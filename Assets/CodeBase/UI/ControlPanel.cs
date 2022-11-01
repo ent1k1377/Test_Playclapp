@@ -9,6 +9,7 @@ namespace CodeBase.UI
     {
         [SerializeField] private CubeFactory _cubeFactory;
 
+        [SerializeField] private Button _exit;
         [SerializeField] private TextMeshProUGUI _timeSpawnValue;
         [SerializeField] private Slider _timeSpawn;
         [SerializeField] private TextMeshProUGUI _speedValue;
@@ -26,6 +27,7 @@ namespace CodeBase.UI
             _timeSpawn.onValueChanged.AddListener(_ => TimeSpawnChanged());
             _speed.onValueChanged.AddListener(_ => SpeedChanged());
             _distance.onValueChanged.AddListener(_ => DistanceChanged());
+            _exit.onClick.AddListener(Exit);
         }
 
         private void Update() => 
@@ -49,7 +51,7 @@ namespace CodeBase.UI
             SpeedChanged();
             DistanceChanged();
         }
-        
+
         private void TimeSpawnChanged() => 
             _timeSpawnValue.text = $"Time Spawn: {_timeSpawn.value}s";
 
@@ -58,5 +60,8 @@ namespace CodeBase.UI
 
         private void DistanceChanged() => 
             _distanceValue.text = $"Distance: {_distance.value}";
+
+        private void Exit() => 
+            Application.Quit();
     }
 }
